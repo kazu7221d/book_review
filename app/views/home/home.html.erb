@@ -1,0 +1,9 @@
+<h1>ログイン画面</h1>
+<p><%= message %></p>
+<%= form_tag("/login", method: "post") do %>
+  <%= label_tag(:id, "ID") %>
+    <%= text_field_tag(:id) %>
+    <%= label_tag(:pw, "Password") %>
+    <%= text_field_tag(:pw) %>
+    <%= submit_tag("ログイン", class: "btn btn-primary") %>
+<% end %>
