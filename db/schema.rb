@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230031106) do
+ActiveRecord::Schema.define(version: 20171230092937) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "user_id"
+    t.string "login_id"
     t.string "user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

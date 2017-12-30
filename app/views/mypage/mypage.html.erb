@@ -1,5 +1,5 @@
 <h1>マイページ</h1>
-<h3>ようこそ、<%= @user_name %>さん！</h3>
+<h3>ようこそ、<%= session[:user_name] %>さん！</h3>
 
 <%= link_to "検索", search_path %>
 <%= link_to "蔵書", library_path %>

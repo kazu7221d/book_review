@@ -5,24 +5,16 @@ class HomeController < ApplicationController
     end
   end
 
-  def login
-    if params[:id] == "id" && params[:pw] == "password" then
-      @user_name = "かず"
-      render 'mypage/mypage'
-    else
-      @message = "IDまたはPasswordが違います！"
-      redirect_to '/'
-      #redirect_to action: :home, message: "IDまたはPasswordが違います！"
-    end
-  end
 
   def new
   end
 
   def create
-    user = User.find_by(user_id: params[:session][:user_id].downcase)
-    if user && user.authenticate(params[:session][:password])
-      #aaa
+    user = User.find_by(login_id: params[:session][:login_id].downcase)
+#    if user && user.authenticate(params[:session][:password])
+    if user
+      log_in user
+      redirect_to mypage_path
     else
       flash[:danger] = 'IDまたはPasswordが違います。'
       render 'home'
