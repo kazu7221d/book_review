@@ -1,9 +1,23 @@
 <h1>ログイン画面</h1>
-<p><%= message %></p>
+<p><%= @message %></p>
+<!--
 <%= form_tag("/login", method: "post") do %>
   <%= label_tag(:id, "ID") %>
     <%= text_field_tag(:id) %>
     <%= label_tag(:pw, "Password") %>
-    <%= text_field_tag(:pw) %>
+    <%= password_field_tag(:pw) %>
     <%= submit_tag("ログイン", class: "btn btn-primary") %>
-<% end %>
+    <% end %>
+-->
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(:session, url: login_path) do |f| %>
+        <%= f.label :id %>
+        <%= f.text_field :user_id, class: 'form-control'%>
+
+        <%= f.label :password %>
+        <%= f.password_field :passwrod, class: 'form-control' %>
+
+        <%= f.submit "Login", class: "btn btn-primary" %>
+        <% end %>
+        <p>Sign Up</p>
+      </div>

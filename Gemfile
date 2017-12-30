@@ -61,3 +61,6 @@ gem "jquery-rails"
 
 #bootstap
 gem 'bootstrap-sass'
+
+#bcrypt
+gem 'bcrypt'
