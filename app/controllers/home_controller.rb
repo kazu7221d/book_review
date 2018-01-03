@@ -22,6 +22,8 @@ class HomeController < ApplicationController
   end
 
   def destroy
+    log_out
+    redirect_to "/"
   end
 
 end

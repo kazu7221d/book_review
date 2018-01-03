@@ -64,3 +64,6 @@ gem 'bootstrap-sass'
 
 #bcrypt
 gem 'bcrypt'
+
+#amazon ecs
+gem 'amazon-ecs'

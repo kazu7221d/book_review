@@ -1,4 +1,8 @@
 <h1>Search#search</h1>
 <p>Find me in app/views/search/search.html.erb</p>
 
+
+<%= form_tag('/search') do %>
+  <%= text_field_tag :kindle_book, "", id: "book_search"), name: "keyword", placeholder: "キーワードを入力" %>
+  <%= submit_tag "検索", class: "btn btn-primary" %>
 <%= link_to "戻る", mypage_path %>

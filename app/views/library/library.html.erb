@@ -2,4 +2,30 @@
 <p>Find me in app/views/library/library.html.erb</p>
 
 
+<div class="" id="search_book">
+  <%= form_tag(library_path) do %>
+    <%= label_tag(:str, "検索キーワード")%>
+    <%= text_field_tag 'str', "", class: 'form-control'%>
+    <%= submit_tag "検索", class: "btn btn-primary" %>
+    <% end %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>title</th>
+    <th>author</th>
+  </tr>
+  <tr>
+  <% if @books %>
+    <% @books.each do |b| %>
+      <td><%= b.id %></td>
+      <td><%= b.title %></td>
+      <td><%= b.author %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+
 <%= link_to "戻る", mypage_path %>

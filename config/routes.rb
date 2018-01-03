@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/search' => 'search#search'
   get '/search/detail' => 'search#detail'
   get '/library' => 'library#library'
+  post '/library' => 'library#library'
 
   get '/login' => 'home#new'
   post '/login' => 'home#create'
