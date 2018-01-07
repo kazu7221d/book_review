@@ -1,4 +1,4 @@
-<h1>ログイン画面</h1>
+<h1 class="page-header">ログイン画面</h1>
 
 <!--
 <%= form_tag("/login", method: "post") do %>
@@ -10,14 +10,22 @@
     <% end %>
 -->
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label :login_id %>
-        <%= f.text_field :login_id, class: 'form-control'%>
+      <div class="panel panel-primary verticalcenter">
+        <div class="panel-heading">
+          <h1 class="panel-title">ログイン</h1>
+        </div>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <div class="panel-body">
+          <%= form_for(:session, url: login_path) do |f| %>
+            <%= f.label :login_id %>
+            <%= f.text_field :login_id, class: 'form-control'%>
 
-        <%= f.submit "Login", class: "btn btn-primary" %>
-        <% end %>
-        <p>Sign Up</p>
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+
+            <%= f.submit "Login", class: "btn btn-primary" %>
+          <% end %>
+          <p><%=link_to "Sign Up", new_users_path %></p>
+          </div>
+      </div>
       </div>

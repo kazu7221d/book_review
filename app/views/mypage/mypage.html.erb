@@ -1,5 +1,7 @@
-<h1>マイページ</h1>
-<h3>ようこそ、<%= current_user.user_name %>さん！</h3>
+<div class="page-header">
+  <h1>マイページ</h1>
+  <h3>ようこそ、<%= current_user.user_name %>さん！</h3>
+</div>
 
 <%= link_to "検索", search_path %>
 <%= link_to "蔵書", library_path %>
