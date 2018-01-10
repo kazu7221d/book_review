@@ -4,5 +4,23 @@
 <%= form_tag('/search') do %>
   <%= text_field_tag :rakuten_book, "", id: "book_search", name: "keyword", placeholder: "キーワードを入力" %>
   <%= submit_tag "検索", class: "btn btn-primary" %>
-  <% end %>
+<% end %>
+<% if @items %>
+  count：<%= @items.count %>件<br>
+  first：<%= @items.first %>件
+
+  <table class="table table-default">
+    <tr>
+      <th>書籍タイトル</th>
+      <th>著者名</th>
+      <th>ISBNコード</th>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item['title'] %></td>
+        <td><%= item['author'] %></td>
+        <td><%= item['isbn'] %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 <%= link_to "戻る", mypage_path %>
