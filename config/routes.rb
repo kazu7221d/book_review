@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/mypage' => 'mypage#mypage'
   get '/search' => 'search#search'
   post '/search' => 'search#search'
-  get '/search/detail' => 'search#detail'
+  post '/search/detail' => 'search#detail'
   get '/library' => 'library#library'
   post '/library' => 'library#library'
 

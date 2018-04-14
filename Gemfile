@@ -67,3 +67,6 @@ gem 'bcrypt'
 
 #rakuen web service
 gem 'rakuten_web_service'
+
+#kaminari (pagenation)
+gem 'kaminari'

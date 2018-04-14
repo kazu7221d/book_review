@@ -1,0 +1,44 @@
+<h1 class="page-header">Search#detail</h1>
+<p>Find me in app/views/search/search.html.erb</p>
+<div class="container">
+
+  <p>書籍詳細</p>
+  <div class="row">
+    <div class="col-xs-4">
+      <img src="<%= @item.largeImageUrl %>" class="img-responsive">
+    </div>
+    <div class="col-xs-8">
+      <table class="table table-bordered">
+        <tr>
+          <td class="col-xs-2" bgcolor="#f0f1ff">タイトル</td>
+          <td class="col-xs-6"><%= @item.title %></td>
+        </tr>
+        <tr>
+          <td class="col-xs-2" bgcolor="#f0f1ff">著者</td>
+          <td class="col-xs-6"><%= @item.author %></td>
+        </tr>
+        <tr>
+          <td class="col-xs-2" bgcolor="#f0f1ff">発売日</td>
+          <td class="col-xs-6"><%= @item.salesDate %></td>
+        </tr>
+        <tr>
+          <td class="col-xs-2" bgcolor="#f0f1ff">金額</td>
+          <td class="col-xs-6"><%= @item.itemPrice %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+
+  <p class="bg-primary">キャプション</p>
+  <p>
+    <%= @item.itemCaption %>
+  </p>
+  <p class="bg-primary">コメントを書く</p>
+  <div class="accordion">
+    <label for="comment">コメントを書く</label>
+    <input type="checkbox" id="comment" class="accordion"/>
+    <textarea class="form-control" rows="10"></textarea>
+  </div>
+  <p class="bg-primary">コメント</p>
+</div>

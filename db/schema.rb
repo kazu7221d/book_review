@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231103133) do
+ActiveRecord::Schema.define(version: 20180407014523) do
 
-  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.string "author"
     t.date "publish_date"
@@ -22,7 +22,42 @@ ActiveRecord::Schema.define(version: 20171231103133) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "rakuten_books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "user_id"
+    t.string "title"
+    t.string "titleKana"
+    t.string "subTitle"
+    t.string "seriesName"
+    t.string "seriesNameKana"
+    t.string "contents"
+    t.string "contentsKana"
+    t.string "author"
+    t.string "authorKana"
+    t.string "publisherName"
+    t.string "size"
+    t.text "itemCaption"
+    t.string "salesDate"
+    t.string "itemPrice"
+    t.string "listPrice"
+    t.string "discountRate"
+    t.string "discountPrice"
+    t.string "itemUrl"
+    t.string "affiliateUrl"
+    t.string "smallImageUrl"
+    t.string "mediumImageUrl"
+    t.string "largeImageUrl"
+    t.string "chirayomiUrl"
+    t.string "availability"
+    t.string "postageFlag"
+    t.string "limitedFlag"
+    t.string "reviewCount"
+    t.string "reviewAverage"
+    t.string "booksGenreId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "login_id"
     t.string "user_name"
     t.datetime "created_at", null: false
