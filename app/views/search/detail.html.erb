@@ -5,25 +5,25 @@
   <p>書籍詳細</p>
   <div class="row">
     <div class="col-xs-4">
-      <img src="<%= @item.largeImageUrl %>" class="img-responsive">
+      <img src="<%= @item['largeImageUrl'] %>" class="img-responsive">
     </div>
     <div class="col-xs-8">
       <table class="table table-bordered">
         <tr>
           <td class="col-xs-2" bgcolor="#f0f1ff">タイトル</td>
-          <td class="col-xs-6"><%= @item.title %></td>
+          <td class="col-xs-6"><%= @item['title'] %></td>
         </tr>
         <tr>
           <td class="col-xs-2" bgcolor="#f0f1ff">著者</td>
-          <td class="col-xs-6"><%= @item.author %></td>
+          <td class="col-xs-6"><%= @item['author'] %></td>
         </tr>
         <tr>
           <td class="col-xs-2" bgcolor="#f0f1ff">発売日</td>
-          <td class="col-xs-6"><%= @item.salesDate %></td>
+          <td class="col-xs-6"><%= @item['salesDate'] %></td>
         </tr>
         <tr>
           <td class="col-xs-2" bgcolor="#f0f1ff">金額</td>
-          <td class="col-xs-6"><%= @item.itemPrice %>円</td>
+          <td class="col-xs-6"><%= @item['itemPrice'] %>円</td>
         </tr>
       </table>
     </div>
@@ -32,7 +32,7 @@
 
   <p class="bg-primary">キャプション</p>
   <p>
-    <%= @item.itemCaption %>
+    <%= @item['itemCaption'] %>
   </p>
   <p class="bg-primary">コメントを書く</p>
   <div class="accordion">
@@ -41,4 +41,5 @@
     <textarea class="form-control" rows="10"></textarea>
   </div>
   <p class="bg-primary">コメント</p>
+  <%= link_to "戻る", search_path %>
 </div>

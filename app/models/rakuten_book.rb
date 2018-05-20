@@ -11,7 +11,7 @@ class RakutenBook < ApplicationRecord
         rbook.subTitle         = item['subTitle']
         rbook.seriesName       = item['seriesName']
         rbook.seriesNameKana   = item['seriesNameKana']
-        rbook.contents         = item['contents']
+        rbook.contents         = item['contents']-
         rbook.contentsKana     = item['contentsKana']
         rbook.author           = item['author']
         rbook.authorKana       = item['authorKana']

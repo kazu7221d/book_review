@@ -70,3 +70,6 @@ gem 'rakuten_web_service'
 
 #kaminari (pagenation)
 gem 'kaminari'
+
+#rest-client
+gem 'rest-client'

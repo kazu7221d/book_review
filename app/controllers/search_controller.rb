@@ -1,42 +1,69 @@
 class SearchController < ApplicationController
-
+  require 'rest-client'
   require 'benchmark'
   require 'rakuten_web_service'
+  require 'json'
+
   helper_method :sort_direction, :sort_column
-  #取得ページ数
-  PAGE_COUNT = 30
 
   def search
-    items = nil
     @item_list = nil
+    @now_page = params[:now_page]
     @input_keyword = params[:keyword]
-    #user_id = session['user_id']
-    user_id = "0"
+    items = nil
 
     # 検索キーワードがサブミットされたとき
     if @input_keyword
-      #楽天Webサービスにリクエストして、検索結果を取得する。
-      items = create_request_rakuten(@input_keyword)
+      #キャッシュの初期化
+#      Rails.cache.delete("items")
+#      #楽天Webサービスにリクエストして、検索結果をキャッシュに保存する
+#      items = Rails.cache.fetch("items") do
+#        create_request_rakuten(@input_keyword, nil)
+#      end
 
-      # 前回までの検索結果を削除
-      RakutenBook.delete_previous_result(user_id)
-
-      # 検索結果をテーブルにデータを格納
-      RakutenBook.set_result(user_id, items)
+       items = create_request_rakuten(@input_keyword, nil, @now_page)
     end
-
-    # 検索結果の取り出し
-    @item_list = RakutenBook.get_result(user_id, sort_direction, sort_column)
-
+    @item_list = items
   end
 
-  def create_request_rakuten(title)
-    items = RakutenWebService::Books::Book.search(:title => params[:keyword], :hits => 30, :page => 1)
-    return items
-  end
 
   def detail
-    @item = RakutenBook.find(params[:item_id])
+    #ISBNコードで楽天ブックスAPI検索
+    @item = create_request_rakuten(nil, params[:isbn], @now_page)['Items'][0]
+    p @item
+  end
+
+  # 楽天ブックスAPIへのリクエストを作成
+  #書籍タイトル、またはisbnコードで検索（どちらにも値がある場合、書籍タイトルを優先）
+  def create_request_rakuten(title, isbn, page)
+    # constants
+    applicationId = "1033840930466977390"
+    affiliateId = "164f0b45.0b8b494f.164f0b46.8f1168c4"
+    rakuten_books_url = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404'
+
+    params = {}
+    params.store   :applicationId, applicationId
+    params.store   :affiliateId,   affiliateId
+    params.store   :format,        "json"
+    params.store   :formatVersion, "2"
+    if title
+      params.store :title,         title
+    end
+    if isbn
+      params.store :isbn,           isbn
+    end
+    if page
+      params.store :page,           page
+    end
+    params.store   :hits,           "30"
+
+    p params
+
+    res = RestClient.get(rakuten_books_url, {params: params})
+    puts "-----------------------------response-----------------------------"
+    p res
+    puts "------------------------------------------------------------------"
+    return JSON.parse(res)
   end
 
   # テーブルのソート用
