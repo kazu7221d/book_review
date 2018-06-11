@@ -14,9 +14,11 @@ class HomeController < ApplicationController
 #    if user && user.authenticate(params[:session][:password])
     if user
       log_in user
-      redirect_to mypage_path
+      format.js { @status = "success" }
+      redirect_to :back
     else
       flash[:danger] = 'IDまたはPasswordが違います。'
+      format.js { @status = "fail" }
       render 'home'
     end
   end

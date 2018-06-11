@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="panel panel-primary verticalcenter">
+      <div class="panel-heading">
+        <h1 class="panel-title">ログイン</h1>
+      </div>
+      <div class="panel-body">
+        <%= form_for(:session, url: login_path, remote: true) do |f| %>
+          <%= f.label :login_id %>
+          <%= f.text_field :login_id, class: 'form-control'%>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.submit "Login", class: "btn btn-primary" %>
+        <% end %>
+        <p><%=link_to "Sign Up", new_users_path %></p>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -15,10 +15,3 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
-
-// aタグのリンク無効化
-$(function(){
-	$('a.disable').click(function(){
-		return false;
-	})
-});
