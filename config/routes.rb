@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 
-  get '/' => 'home#home'
+  get '/' => 'search#search'
   get '/mypage' => 'mypage#mypage'
   get '/search' => 'search#search'
   get '/search/detail/:isbn' => 'search#detail'
+  post '/search/detail/:isbn' => 'search#create_review'
   get '/library' => 'library#library'
   post '/library' => 'library#library'
 

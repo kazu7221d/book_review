@@ -1,14 +1,13 @@
 class SearchController < ApplicationController
   require 'rest-client'
   require 'benchmark'
-  require 'rakuten_web_service'
   require 'json'
 
   helper_method :sort_direction, :sort_column
 
   def search
     @item_list = nil
-    @now_page = params[:now_page]
+    @now_page = params[:now_page] || "1"
     @input_keyword = params[:keyword]
     items = nil
 
@@ -26,11 +25,17 @@ class SearchController < ApplicationController
     @item_list = items
   end
 
-
   def detail
+    @review = Review.new
     #ISBNコードで楽天ブックスAPI検索
     @item = create_request_rakuten(nil, params[:isbn], @now_page)['Items'][0]
     p @item
+  end
+
+  def create_review
+    @review = Review.new(params.require(:review).permit(:user_id, :book_isbn, :book_title, :rate, :review_title, :review_comment))
+    @review.save
+    redirect_to(:action => "detail")
   end
 
   # 楽天ブックスAPIへのリクエストを作成

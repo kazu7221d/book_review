@@ -25,6 +25,10 @@
           <td class="col-xs-2" bgcolor="#f0f1ff">金額</td>
           <td class="col-xs-6"><%= @item['itemPrice'] %>円</td>
         </tr>
+        <tr>
+          <td class="col-xs-2" bgcolor="#f0f1ff">評価</td>
+          <td class="col-xs-6"><%= @item['reviewAverage'] %></td>
+        </tr>
       </table>
     </div>
   </div>
@@ -36,10 +40,17 @@
   </p>
   <p class="bg-primary">コメントを書く</p>
   <div class="accordion">
-    <label for="comment">コメントを書く</label>
-    <input type="checkbox" id="comment" class="accordion"/>
-    <textarea class="form-control" rows="10"></textarea>
+  <%= form_for(@review, :url => {:action => "create_review"}) do |f| %>
+    <%= f.label :review_title, "件名" %>
+    <%= f.text_field :review_title, class: "col-xs-6" %>
+    <%= f.submit%>
+    <%= f.label :review_comment, "コメント" %>
+    <%= f.text_area :review_comment, class: "form-control", rows: 10 %>
+    <%= f.hidden_field :user_id,    value:"id" %>
+    <%= f.hidden_field :book_isbn,  value:@item['isbn'] %>
+    <%= f.hidden_field :book_title, value:@item['title'] %>
+  <% end %>
   </div>
-  <p class="bg-primary">コメント</p>
+  <p class="bg-primary">コメント一覧</p>
   <%= link_to "戻る", search_path %>
 </div>

@@ -1,0 +1,5 @@
+ja:
+  view:
+    pagination:
+    previous: "&laquo;"
+    next: "&raquo;"

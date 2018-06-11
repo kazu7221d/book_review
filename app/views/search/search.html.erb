@@ -4,12 +4,9 @@
 <p>Find me in app/views/search/search.html.erb</p>
 
 <%= form_tag('/search', method: :get) do %>
-  <div class="input-group col-sm-6">
   <%= text_field_tag :rakuten_book, @input_keyword, id: "book_search", name: "keyword", placeholder: "キーワードを入力" %>
-  <span class="input-group-btn">
+
     <%= submit_tag "検索", class: "btn btn-primary" %>
-  </span>
-  </div>
 <% end %>
 
 <%# 書籍検索がされていた場合 %>
@@ -19,7 +16,11 @@
   <div class="form-group">
     <ul class="pagination pagination-sm">
     <li>
-    <a href="#">&laquo;</a>
+    <% if (@now_page.to_i - 1) < 1  %>
+      <%= link_to "<", search_path(now_page: @now_page, keyword: @input_keyword) %>
+    <% else %>
+      <%= link_to "<", search_path(now_page: @now_page.to_i - 1, keyword: @input_keyword) %>
+    <% end %>
     </li>
       <% for i in 1..(items['count'] / 30 + 1) do %>
         <% if @now_page.to_i == i %>
@@ -32,11 +33,16 @@
         </li>
       <% end %>
     <li>
-    <a href="#">&raquo;</a>
+    <% if @now_page.to_i * 30 > items['count']  %>
+      <%= link_to ">", search_path(now_page: @now_page, keyword: @input_keyword) %>
+    <% else %>
+      <%= link_to ">", search_path(now_page: @now_page.to_i + 1, keyword: @input_keyword) %>
+    <% end %>
     </li>
     </ul>
   </div>
 
+  <%# 検索結果表示部 %>
   <p>件数：<%= items['count'] %>件</p>
   <%= form_tag('/search/detail', name:'submit_item') do %>
     <table class="table table-striped table-hover">
@@ -54,8 +60,8 @@
         <% reviewStar = reviewAverage.to_i == 0 ? "☆" * 5 : "★" * reviewAverage.to_i + "☆" * (5 - reviewAverage.to_i) %>
         <tr>
         <td><img src="<%= smallImageUrl %>"></td>
-        <td><%= link_to author, controller: :search, action: :detail, isbn: isbn %></td>
         <td><%= link_to title,  controller: :search, action: :detail, isbn: isbn %></td>
+        <td><%= link_to author, controller: :search, action: :detail, isbn: isbn %></td>
         <td><%= reviewStar %></td>
         </tr>
       <% end %>

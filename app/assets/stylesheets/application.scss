@@ -16,6 +16,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+// Body padding for the fixed navbar
+body { padding-top: 70px; }
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;

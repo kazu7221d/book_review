@@ -65,11 +65,9 @@ gem 'bootstrap-sass'
 #bcrypt
 gem 'bcrypt'
 
-#rakuen web service
-gem 'rakuten_web_service'
-
 #kaminari (pagenation)
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 #rest-client
 gem 'rest-client'
