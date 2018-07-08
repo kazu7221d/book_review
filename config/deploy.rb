@@ -2,7 +2,7 @@
 lock '3.11.0'
 
 set :application, 'book_review'
-set :repo_url, 'git@github.com/kazu7221d/book_review.git'
+set :repo_url, 'git@github.com:kazu7221d/book_review.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -39,6 +39,13 @@ set :unicorn_rack_env, 'production'
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
+  
+  desc 'execute before deploy'
+  task :db_create do
+    on roles(:db) do |host|
+      execute "source ~/.bash_profile"
+    end
+  end
 
   desc 'Restart application'
   task :restart do

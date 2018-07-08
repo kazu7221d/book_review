@@ -21,7 +21,7 @@ install_plugin Capistrano::SCM::Git
 
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.4.0-p0' 
+set :rbenv_ruby, '2.4.0' 
 
 # require 'capistrano/chruby'
 # require 'capistrano/bundler'
