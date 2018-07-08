@@ -24,21 +24,21 @@
         </div>
 	      <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Search", search_path %></li>
+            <li><%= link_to "検索", search_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
             <% if current_user %>
-              <%= link_to 'Logout', logout_path %>
+              <%= link_to current_user[:user_name], logout_path, method: :delete %>
             <% else %>
-              <%= link_to 'Login', login_path, remote: true %>
-              <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
+              <%= link_to 'ログイン', login_path, remote: true %>
             <% end %>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
   <div class="container">
     <%= yield %>

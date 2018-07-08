@@ -1,56 +1,64 @@
-<h1 class="page-header">Search#detail</h1>
-<p>Find me in app/views/search/search.html.erb</p>
-<div class="container">
-
-  <p>書籍詳細</p>
-  <div class="row">
-    <div class="col-xs-4">
-      <img src="<%= @item['largeImageUrl'] %>" class="img-responsive">
-    </div>
-    <div class="col-xs-8">
-      <table class="table table-bordered">
-        <tr>
-          <td class="col-xs-2" bgcolor="#f0f1ff">タイトル</td>
-          <td class="col-xs-6"><%= @item['title'] %></td>
-        </tr>
-        <tr>
-          <td class="col-xs-2" bgcolor="#f0f1ff">著者</td>
-          <td class="col-xs-6"><%= @item['author'] %></td>
-        </tr>
-        <tr>
-          <td class="col-xs-2" bgcolor="#f0f1ff">発売日</td>
-          <td class="col-xs-6"><%= @item['salesDate'] %></td>
-        </tr>
-        <tr>
-          <td class="col-xs-2" bgcolor="#f0f1ff">金額</td>
-          <td class="col-xs-6"><%= @item['itemPrice'] %>円</td>
-        </tr>
-        <tr>
-          <td class="col-xs-2" bgcolor="#f0f1ff">評価</td>
-          <td class="col-xs-6"><%= @item['reviewAverage'] %></td>
-        </tr>
-      </table>
-    </div>
+<h1>Detail</h1>
+<div class="row">
+  <div class="col-xs-4">
+    <img src="<%= @item['largeImageUrl'] %>" class="img-responsive">
   </div>
-  <br>
-
-  <p class="bg-primary">キャプション</p>
-  <p>
-    <%= @item['itemCaption'] %>
-  </p>
-  <p class="bg-primary">コメントを書く</p>
-  <div class="accordion">
-  <%= form_for(@review, :url => {:action => "create_review"}) do |f| %>
-    <%= f.label :review_title, "件名" %>
-    <%= f.text_field :review_title, class: "col-xs-6" %>
-    <%= f.submit%>
-    <%= f.label :review_comment, "コメント" %>
-    <%= f.text_area :review_comment, class: "form-control", rows: 10 %>
-    <%= f.hidden_field :user_id,    value:"id" %>
-    <%= f.hidden_field :book_isbn,  value:@item['isbn'] %>
-    <%= f.hidden_field :book_title, value:@item['title'] %>
-  <% end %>
+  <div class="col-xs-8">
+    <table class="table table-bordered">
+      <tr>
+        <td class="col-xs-2" bgcolor="#f0f1ff">タイトル</td>
+        <td class="col-xs-6"><%= @item['title'] %></td>
+      </tr>
+      <tr>
+        <td class="col-xs-2" bgcolor="#f0f1ff">著者</td>
+        <td class="col-xs-6"><%= @item['author'] %></td>
+      </tr>
+      <tr>
+        <td class="col-xs-2" bgcolor="#f0f1ff">発売日</td>
+        <td class="col-xs-6"><%= @item['salesDate'] %></td>
+      </tr>
+      <tr>
+        <td class="col-xs-2" bgcolor="#f0f1ff">金額</td>
+        <td class="col-xs-6"><%= @item['itemPrice'] %>円</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2" bgcolor="#f0f1ff">評価</td>
+        <td class="col-xs-6"><%= @item['reviewAverage'] %></td>
+      </tr>
+    </table>
   </div>
-  <p class="bg-primary">コメント一覧</p>
-  <%= link_to "戻る", search_path %>
 </div>
+<br>
+
+<p class="bg-primary">キャプション</p>
+<p>
+  <%= @item['itemCaption'] %>
+</p>
+<p class="bg-primary">コメントを書く</p>
+<div class="accordion">
+<%= form_for(@review, :url => {:action => "create_review"}) do |f| %>
+  <%= f.label :review_title, "件名" %>
+  <%= f.text_field :review_title, class: "col-xs-6" %>
+  <%= f.submit%>
+  <%= f.label :review_comment, "コメント" %>
+  <%= f.text_area :review_comment, class: "form-control", rows: 10 %>
+  <%= f.hidden_field :user_id,    value:(current_user[:user_id]) %>
+  <%= f.hidden_field :book_isbn,  value:@item['isbn'] %>
+  <%= f.hidden_field :book_title, value:@item['title'] %>
+<% end %>
+</div>
+<p class="bg-primary">コメント一覧</p>
+<% @review_list.each do |r|  %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div>
+      <p>ユーザ名：<%= r.user_name %>　　タイトル：<%= r.review_title %></p>
+      <p></p>
+    </div>
+  </div>
+  <div class="panel-body">
+    <p><%= r.review_comment %></p>
+  </div>
+</div>
+<% end %>
+<%= link_to "戻る", search_path %>

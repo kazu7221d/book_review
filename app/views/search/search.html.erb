@@ -1,12 +1,7 @@
-
-
-<h1 class="page-header">Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
-
+<h1>検索</h1>
 <%= form_tag('/search', method: :get) do %>
   <%= text_field_tag :rakuten_book, @input_keyword, id: "book_search", name: "keyword", placeholder: "キーワードを入力" %>
-
-    <%= submit_tag "検索", class: "btn btn-primary" %>
+  <%= submit_tag "検索", class: "btn btn-primary" %>
 <% end %>
 
 <%# 書籍検索がされていた場合 %>

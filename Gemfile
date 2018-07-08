@@ -71,3 +71,10 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 
 #rest-client
 gem 'rest-client'
+
+#capistrano, unicorn
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rbenv'
+gem 'unicorn'

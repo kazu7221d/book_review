@@ -30,6 +30,7 @@ class SearchController < ApplicationController
     #ISBNコードで楽天ブックスAPI検索
     @item = create_request_rakuten(nil, params[:isbn], @now_page)['Items'][0]
     p @item
+    @review_list = Review.joins(:user).order(:created_at).select('users.user_name, reviews.review_title, reviews.review_comment, reviews.rate').where(book_isbn: params[:isbn])
   end
 
   def create_review
@@ -47,20 +48,20 @@ class SearchController < ApplicationController
     rakuten_books_url = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404'
 
     params = {}
-    params.store   :applicationId, applicationId
-    params.store   :affiliateId,   affiliateId
-    params.store   :format,        "json"
-    params.store   :formatVersion, "2"
+    params.store   :applicationId  , applicationId
+    params.store   :affiliateId    , affiliateId
+    params.store   :format         , "json"
+    params.store   :formatVersion  , "2"
     if title
-      params.store :title,         title
+      params.store :title          , title
     end
     if isbn
-      params.store :isbn,           isbn
+      params.store :isbn           , isbn
     end
     if page
-      params.store :page,           page
+      params.store :page           , page
     end
-    params.store   :hits,           "30"
+    params.store   :hits           , "30"
 
     p params
 
