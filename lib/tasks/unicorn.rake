@@ -39,7 +39,7 @@ namespace :unicorn do
 
   def unicorn_pid
     begin
-      File.read("/home/vagrant/myapp/tmp/unicorn.pid").to_i
+      File.read("/home/ec2-user/deploy/shared/tmp/pids/unicorn.pid").to_i
     rescue Errno::ENOENT
       raise "Unicorn does not seem to be running"
     end
