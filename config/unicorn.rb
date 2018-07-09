@@ -2,7 +2,7 @@ worker_processes 3
 
 app_path = "/home/ec2-user/deploy"
 
-listen '/tmp/unicorn.sock' #1
+listen "#{app_path}/shared/tmp/unicorn.sock"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 
 stderr_path File.expand_path('unicorn.err.log', File.dirname(__FILE__) + '/../log')
