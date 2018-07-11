@@ -11,11 +11,5 @@ AmazonWebService
 - フレームワーク - Ruby on Rails
 - RDBMS - Mysql
 
-※ログインするとエラー
 
-※ユーザ登録するとエラー
-
-※書籍詳細を開くとエラー
-
-（笑）
-
+まだバグだらけ。。
