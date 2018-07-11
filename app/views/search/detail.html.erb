@@ -42,7 +42,11 @@
   <%= f.submit%>
   <%= f.label :review_comment, "コメント" %>
   <%= f.text_area :review_comment, class: "form-control", rows: 10 %>
+  <% if current_user %>
   <%= f.hidden_field :user_id,    value:(current_user[:user_id]) %>
+  <% else %>
+  <%= f.hidden_field :user_id,    value: 1 %>
+  <% end %>
   <%= f.hidden_field :book_isbn,  value:@item['isbn'] %>
   <%= f.hidden_field :book_title, value:@item['title'] %>
 <% end %>
